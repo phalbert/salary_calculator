@@ -40,7 +40,7 @@ namespace SalaryCalculator
 
                 string printOut = String.Format("{0}\t\t{1}\t{2}\t{3}\t{4}\t{5:F}\t\t${6}\t\t{7}\n",
                     employees[i], ratings[i][0], ratings[i][1], ratings[i][2], ratings[i][3],
-                    overallRating, expectedSalary, performance);
+                    overallRating, String.Format("{0:n0}", expectedSalary), performance);
 
                 printOuts[overallRating] = printOut;
             }

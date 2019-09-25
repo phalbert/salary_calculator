@@ -2,7 +2,7 @@
 
 * Read the number of employees N;
 * Use a few arrays of length N to store employee names, their current salaries,and their ratings obtained for each quarter-Q1, Q2, Q3, and Q4 (ratingsrangingfrom 1-10);
-* Read  a  list  of  N employeenames,current  salaries,and quarterly ratings,and  store  them  in  the corresponding arrays;
+* Read  a  list  of  N employee names,current  salaries,and quarterly ratings,and  store  them  in  the corresponding arrays;
 * Calculate the overall (i.e., average) rating for each employee for the year (total rating/4);
 * Calculate the expected salary for the next year based on the overall performance;
 

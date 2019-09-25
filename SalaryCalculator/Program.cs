@@ -12,7 +12,7 @@ namespace SalaryCalculator
 
         public static void Calculator()
         {
-            Console.WriteLine("How many employees?\n");
+            Console.Write("How many employees?");
             int N = Int32.Parse(Console.ReadLine());
 
             var employees = new string[N];
@@ -25,7 +25,9 @@ namespace SalaryCalculator
 
         private static void WriteArray(int N, string[] employees, double[] salaries, List<int[]> ratings)
         {
-            Console.WriteLine("Names\t\tQ1\tQ2\tQ3\tQ4\tOverall\tExpected Salary\t\tPerformance");
+            Console.WriteLine("Names\t\tQ1\tQ2\tQ3\tQ4\tOverall Rating\tExpected Salary\t\tPerformance");
+            var overall_ratings = new double[N];
+            var printOuts = new Dictionary<double, string>();
 
             for (int i = 0; i < N; i++)
             {
@@ -34,9 +36,24 @@ namespace SalaryCalculator
                 var expectedSalary = salaries[i] + salaryIncrease;
                 var performance = GetPerformance(overallRating);
 
-                Console.WriteLine("{0}\t\t{1}\t{2}\t{3}\t{4}\t{5:F}\t\t{6}\t\t{7}\n",
+                overall_ratings[i] = overallRating;
+
+                string printOut = String.Format("{0}\t\t{1}\t{2}\t{3}\t{4}\t{5:F}\t\t${6}\t\t{7}\n",
                     employees[i], ratings[i][0], ratings[i][1], ratings[i][2], ratings[i][3],
                     overallRating, expectedSalary, performance);
+
+                printOuts[overallRating] = printOut;
+            }
+
+            //sort in ascending order
+            Array.Sort(overall_ratings);
+            // then reverse to descending order
+            Array.Reverse(overall_ratings);
+
+            // print all element of array 
+            foreach (double value in overall_ratings)
+            {
+                Console.WriteLine(printOuts[value]);
             }
         }
 
@@ -71,10 +88,16 @@ namespace SalaryCalculator
                 salaries[i] = Int32.Parse(Console.ReadLine());
 
                 var emp_ratings = new int[4];
-                for(int j = 1; j < 5; j++)
+                for(int j = 0; j <  4; j++)
                 {
-                    Console.WriteLine("Enter " + name + "'s mark for Q"+ j.ToString());
-                    emp_ratings[i] = Int32.Parse(Console.ReadLine());
+                    int rating;
+                    do
+                    {
+                        Console.WriteLine("Enter " + name + "'s mark for Q" + j.ToString());
+                        rating = Int32.Parse(Console.ReadLine());
+                        emp_ratings[j] = rating;
+                    }
+                    while (rating > 10);
                 }
                 ratings.Add(emp_ratings);
             }
